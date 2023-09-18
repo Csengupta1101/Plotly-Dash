@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Primary Lifting Sunburst Chart</title>
+  <!-- Add necessary CSS and JavaScript libraries -->
+  <link rel="stylesheet" href="https://cdn.plot.ly/plotly-latest.min.css">
+</head>
+<body>
+  <div id="sunburst-chart"></div>
+
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script>
+    const df1 = {
+      state: ['State 1', 'State 2'],
+      district: ['District A', 'District B'],
+      block_name: ['Block 1', 'Block 2'],
+      primary_lifting: [100, 200]
+    };
+
+    const data = [{
+      type: 'sunburst',
+      labels: df1.state.concat(df1.district),
+      parents: ['', 'State 1', 'State 2'],
+      values: df1.primary_lifting,
+      hoverinfo: 'label+value',
+      textinfo: 'percent parent+value'
+    }];
+
+    const layout = {
+      margin: { l: 0, r: 0, b: 0, t: 0 },
+      sunburstcolorway: [
+        'gold', 'mediumturquoise', 'darkorange', 'lightgreen'
+      ],
+      extendsunburstcolors: true
+    };
+
+    Plotly.newPlot('sunburst-chart', data, layout);
+  </script>
+</body>
+</html>
